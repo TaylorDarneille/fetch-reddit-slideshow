@@ -32,9 +32,12 @@ Create button to stop animation (tip: use clearInterval).
 */
 
 const requestUrl = 'https://www.reddit.com/search.json?q='
+let picturesArray = []
+
 
 const fetchResult = (searchTerm) => {
     console.log('finding:',requestUrl+searchTerm)
+    hideLandingPage()
     fetch(requestUrl+searchTerm)
     .then((responseData) => {
         return responseData.json()
@@ -52,13 +55,13 @@ const fetchResult = (searchTerm) => {
         }
         result.forEach(addPerson)
         */
-       result.forEach(addImage)
+       result.forEach(addImageToArray)
+        result.forEach(addImage)
+        createStopButton()
     })
     .catch((error) => {
             console.log('there is an error:', error)
-    })
-
-    
+    })   
 }
 
 const addImage = (image) => {
@@ -70,8 +73,55 @@ const addImage = (image) => {
     let pic = document.createElement('img')
     //set pic attribute to pull in thumbnail
     pic.setAttribute('src', image.data.thumbnail)
-    body.appendChild(pic)
+    main.appendChild(pic)
     //peopleList.appendChild(li)
+}
+
+const addImageToArray = (image) => {
+    picturesArray.push(image)
+    console.log(picturesArray)
+}
+
+const hideLandingPage = () => {
+    /*
+    title.style.display = 'none'
+    directions.style.display = 'none'
+    form.style.display = 'none'
+    */
+    title.style.visibility = 'hidden'
+    directions.style.visibility = 'hidden'
+    form.style.visibility = 'hidden'
+}
+
+const createStopButton = () => {
+    const stop = document.createElement('button')
+    stop.setAttribute('id', 'stop')
+    stop.innerHTML = 'Stop Show'
+    main.appendChild(stop)
+}
+
+const unhideLandingPage = () => {
+    /*
+    const title = document.createElement('h1')
+    title.setAttribute('id', 'title')
+    title.innerHTML = 'Animal Carousel'
+    const directions = document.createElement('p')
+    directions.setAttribute('id', 'directions')
+    directions.innerHTML = 'Search for an animal to star in a slideshow!'
+    const form = document.createElement('form')
+    form.setAttribute('id', 'form')
+
+    landingPage.appendChild(title)
+    landingPage.appendChild(directions)
+    landingPage.appendChild(form)
+    */
+
+   //remove image
+
+   //re-show landingpage
+   title.style.visibility = 'visible'
+    directions.style.visibility = 'visible'
+    form.style.visibility = 'visible'
 }
 
 document.addEventListener('DOMContentLoaded', ()=> {
