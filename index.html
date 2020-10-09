@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
+  <title>Reddit Slideshow</title>
   <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
   <div id="searchPage">
-    <h1>Type into the search to view your images</h1>
+    <h1>Reddit Image Gallery</h1>
     <form id="form">
-      <input id="search" type="text" name="" value="">
-      <input id="submit" type="submit" name="" value="submit">
+      <input id="search" autocomplete="off" type="text" name="" value="" placeholder="What are you looking for?">
+      <input id="submit" type="submit" name="" value="Search">
     </form>
   </div>
-  <div class="results">
+  <div id="results">
     <div id="imageContainer">
       <!-- IMG will go here in the interval -->
     </div>
-    <button type="button" name="button" id="stop">Stop</button>
+    <input type="button" name="button" id="stop" value="Stop">
   </div>
   <script src="./js/app.js" charset="utf-8"></script>
 </body>
