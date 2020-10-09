@@ -4,8 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hello Front-End</title>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-  <h1>Hello Front-End</h1>
+  <div id="searchPage">
+    <h1>Type into the search to view your images</h1>
+    <form id="form">
+      <input id="search" type="text" name="" value="">
+      <input id="submit" type="submit" name="" value="submit">
+    </form>
+  </div>
+  <div class="results">
+    <div id="imageContainer">
+      <!-- IMG will go here in the interval -->
+    </div>
+    <button type="button" name="button" id="stop">Stop</button>
+  </div>
+  <script src="./js/app.js" charset="utf-8"></script>
 </body>
 </html>
