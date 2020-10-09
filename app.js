@@ -1,4 +1,5 @@
 const requestUrl = "https://www.reddit.com/search.json?q="
+let container = document.querySelector('#container')
 
 
 //fetch the images from reddit
@@ -19,25 +20,53 @@ const fetchImages = () => {
             return child.data.thumbnail
         })
         console.log(thumbPics)
-        //for each item in the array create a new img tag and append to the container
-        thumbPics.forEach((imageURL)=>{
-            setInterval(() => {
-                let container = document.querySelector('#container')
-                let pic = document.createElement('img')
-                //set pic source
-                pic.setAttribute("src", imageURL)
-                container.appendChild(pic)
-            }, 2500)
-        })
-        
+        thumbPics.forEach(createImg)        
+        slideshow()
     })
     .catch((error)=>{
         console.log("oh no, there's been an error!", error)
     })
 }
 
+const createImg = (imageURL)=>{
+    let pic = document.createElement('img')
+    //set pic source
+    pic.setAttribute("src", imageURL)
+    container.appendChild(pic)
+    pic.classList.add('hidden')
+}
+
+const slideshow = ()=>{
+    let allPics = document.querySelectorAll('img')
+    // console.log(allPics)
+    let i = 0, time = 2000;
+    
+    setInterval(() => {
+        if(container.firstChild){
+            container.removeChild(container.firstChild)
+        }
+        allPics[i].classList.remove('hidden');
+        //Go over each slide incrementing the index
+        i++;
+    }, time);
+}
+
+
+
 //append image function
-// const addImage = 
+// const addImage = (imageURL)=>{
+//     let pic = document.createElement('img')
+//     //set pic source
+//     pic.setAttribute("src", imageURL)
+//     container.appendChild(pic)
+//     pic.classList.add('hidden') 
+//     setInterval((pic) => {
+//         pic.classList.remove('hidden') 
+//         //go to the next index in the array
+//         pic++
+//         //create a function to stop and repopulate search field if the stop button is clicked
+//     }, 3000)
+// }
 
 document.addEventListener("DOMContentLoaded",() => {
     form.addEventListener("submit", (event)=>{
