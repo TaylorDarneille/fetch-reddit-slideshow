@@ -98,9 +98,11 @@ const createStopButton = () => {
     stop.setAttribute('id', 'stop')
     stop.innerHTML = 'Stop Show'
     main.appendChild(stop)
+    addStopButtonListener()
+    
 }
 
-const unhideLandingPage = () => {
+const unhideLandingPage = (event) => {
     /*
     const title = document.createElement('h1')
     title.setAttribute('id', 'title')
@@ -116,12 +118,19 @@ const unhideLandingPage = () => {
     landingPage.appendChild(form)
     */
 
-   //remove image
-
+   //remove images
+    while(main.firstChild) {
+        main.removeChild(main.firstChild)
+    }
    //re-show landingpage
    title.style.visibility = 'visible'
     directions.style.visibility = 'visible'
     form.style.visibility = 'visible'
+}
+
+const addStopButtonListener = () => {
+    const stop = document.querySelector('#stop')
+    stop.addEventListener('click', unhideLandingPage)
 }
 
 document.addEventListener('DOMContentLoaded', ()=> {
