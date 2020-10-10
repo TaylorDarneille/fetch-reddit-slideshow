@@ -1,3 +1,16 @@
 body {
     background-color: lightblue;
 }
+
+#landingPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#stop {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+}

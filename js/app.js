@@ -1,4 +1,3 @@
-console.log('hello')
 /*
 Page should load with
 Some sort of title
@@ -33,6 +32,7 @@ Create button to stop animation (tip: use clearInterval).
 
 const requestUrl = 'https://www.reddit.com/search.json?q='
 let picturesArray = []
+let intervalId
 
 
 const fetchResult = (searchTerm) => {
@@ -45,7 +45,7 @@ const fetchResult = (searchTerm) => {
     .then((jsonData) => {
         console.log('jsonData:', jsonData)
         //console.log('jsonData:', jsonData.data)
-        console.log('jsonDataWithImage:', jsonData.data.children[0].data.thumbnail)
+        //console.log('jsonDataWithImage:', jsonData.data.children[0].data.thumbnail)
         let result = jsonData.data.children
         console.log(result)
         //console.log(result.data.thumbnail) returns undefined
@@ -56,7 +56,9 @@ const fetchResult = (searchTerm) => {
         result.forEach(addPerson)
         */
        result.forEach(addImageToArray)
-        result.forEach(addImage)
+       startSlideshow()
+       console.log(picturesArray)
+        //result.forEach(addImageToPage)
         createStopButton()
     })
     .catch((error) => {
@@ -64,7 +66,7 @@ const fetchResult = (searchTerm) => {
     })   
 }
 
-const addImage = (image) => {
+const addImageToPage = (image) => {
     //create new li
     //let li = document.createElement('li')
     //add first and last name of person to li with string interpolation
@@ -77,9 +79,18 @@ const addImage = (image) => {
     //peopleList.appendChild(li)
 }
 
-const addImageToArray = (image) => {
-    picturesArray.push(image)
-    console.log(picturesArray)
+const addImageToArray = (object) => {
+    if(object.data.thumbnail.includes('https')) {
+        picturesArray.push(object.data.thumbnail)  
+    }
+}
+
+const startSlideshow = () => {
+    intervalId = setInterval(slideshow, 2000)
+}
+
+const stopSlideshow = () => {
+    clearInterval(intervalId)
 }
 
 const hideLandingPage = () => {
@@ -88,16 +99,32 @@ const hideLandingPage = () => {
     directions.style.display = 'none'
     form.style.display = 'none'
     */
+   input.value = ''
     title.style.visibility = 'hidden'
     directions.style.visibility = 'hidden'
     form.style.visibility = 'hidden'
 }
 
+const slideshow = (i) => {
+    while(main.firstChild) {
+        main.removeChild(main.firstChild)
+    }
+    //picturesArray.forEach(addImageToPage)
+    console.log('slideshow function called')
+    cycleImage()
+}
+
+const cycleImage = () => {
+    let pic = document.createElement('img')
+    pic.setAttribute('src', picturesArray[0])
+    main.appendChild(pic)
+}
+
 const createStopButton = () => {
     const stop = document.createElement('button')
     stop.setAttribute('id', 'stop')
-    stop.innerHTML = 'Stop Show'
-    main.appendChild(stop)
+    stop.innerHTML = 'Select a New Animal'
+    body.appendChild(stop)
     addStopButtonListener()
     
 }
@@ -117,15 +144,20 @@ const unhideLandingPage = (event) => {
     landingPage.appendChild(directions)
     landingPage.appendChild(form)
     */
-
+    const stop = document.querySelector('#stop')
+    //clear interval
+    clearInterval(intervalId)
    //remove images
     while(main.firstChild) {
         main.removeChild(main.firstChild)
     }
+    //hide Select New Animal button
+    stop.style.visibility = 'hidden'
    //re-show landingpage
    title.style.visibility = 'visible'
     directions.style.visibility = 'visible'
     form.style.visibility = 'visible'
+
 }
 
 const addStopButtonListener = () => {
