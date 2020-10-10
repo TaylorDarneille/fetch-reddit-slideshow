@@ -5,17 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fetch Reddit!</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body id="body">
   <h1>Welcome to Fetch Reddit!</h1>
-  <h3>Input an item to search to populate a slideshow of images that match the description of your search. </h3>
-  <form id="form">
-    <input id="input" type="text" min=1 >
-    <input id="submit" type="submit" value="Search">
-  </form>
-  <div id="container">
-    
+  <div class="search-container">
+    <p class="search-title">
+        Input a search item to populate a slideshow <br>of images that match the description of your search
+    </p>  
+    <form id="form">
+        <input id="input" type="text" min=1 placeholder="Search">
+        <button id="submit" class="fa fa-search" type="submit"></button>
+      </form>
   </div>
+  <div id="container">
+      
+  </div>
+  <button id="stop-button" class="hidden">STOP</button>
   <script src="app.js"></script>
 </body>
 </html>

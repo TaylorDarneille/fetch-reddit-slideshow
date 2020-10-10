@@ -1,5 +1,6 @@
 const requestUrl = "https://www.reddit.com/search.json?q="
 let container = document.querySelector('#container')
+let stopBtn = document.querySelector('#stop-button')
 
 
 //fetch the images from reddit
@@ -20,7 +21,9 @@ const fetchImages = () => {
             return child.data.thumbnail
         })
         console.log(thumbPics)
+        //create an image tag for each search result
         thumbPics.forEach(createImg)        
+        //begin the slideshow once all image tags are created
         slideshow()
     })
     .catch((error)=>{
@@ -37,11 +40,12 @@ const createImg = (imageURL)=>{
 }
 
 const slideshow = ()=>{
+    //create an array of all the newly created image tags
     let allPics = document.querySelectorAll('img')
     // console.log(allPics)
     let i = 0, time = 2000;
-    
-    setInterval(() => {
+    //loop through the img tags array and unhide them one by one
+    let timer = setInterval(() => {
         if(container.firstChild){
             container.removeChild(container.firstChild)
         }
@@ -49,6 +53,8 @@ const slideshow = ()=>{
         //Go over each slide incrementing the index
         i++;
     }, time);
+
+    // stopBtn.addEventListener('click', clearInterval(timer))
 }
 
 
@@ -72,6 +78,8 @@ document.addEventListener("DOMContentLoaded",() => {
     form.addEventListener("submit", (event)=>{
         event.preventDefault()
         fetchImages()
-        // form.classList.add('hidden')
+        form.classList.add('hidden')
+        stopBtn.setAttribute('class','')
     })
 })
+    
