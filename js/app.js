@@ -32,6 +32,7 @@ Create button to stop animation (tip: use clearInterval).
 
 const requestUrl = 'https://www.reddit.com/search.json?q='
 let picturesArray = []
+let picturesArrayRef = -1
 let intervalId
 
 
@@ -59,7 +60,7 @@ const fetchResult = (searchTerm) => {
        startSlideshow()
        console.log(picturesArray)
         //result.forEach(addImageToPage)
-        createStopButton()
+        //createStopButton()
     })
     .catch((error) => {
             console.log('there is an error:', error)
@@ -67,16 +68,10 @@ const fetchResult = (searchTerm) => {
 }
 
 const addImageToPage = (image) => {
-    //create new li
-    //let li = document.createElement('li')
-    //add first and last name of person to li with string interpolation
-    //li.textContent = `${person.name.first} ${person.name.last}`
-    //append li to ul by using ul we created in HTML with id of peopleList
     let pic = document.createElement('img')
     //set pic attribute to pull in thumbnail
     pic.setAttribute('src', image.data.thumbnail)
     main.appendChild(pic)
-    //peopleList.appendChild(li)
 }
 
 const addImageToArray = (object) => {
@@ -88,11 +83,11 @@ const addImageToArray = (object) => {
 const startSlideshow = () => {
     intervalId = setInterval(slideshow, 2000)
 }
-
+/*
 const stopSlideshow = () => {
     clearInterval(intervalId)
 }
-
+*/
 const hideLandingPage = () => {
     /*
     title.style.display = 'none'
@@ -112,19 +107,30 @@ const slideshow = (i) => {
     //picturesArray.forEach(addImageToPage)
     console.log('slideshow function called')
     cycleImage()
+    createStopButton()
 }
 
 const cycleImage = () => {
     let pic = document.createElement('img')
-    pic.setAttribute('src', picturesArray[0])
+    grabPicturesArrayElement()
+    pic.setAttribute('src', picturesArray[picturesArrayRef])
     main.appendChild(pic)
+}
+
+const grabPicturesArrayElement = () => {
+    if(picturesArrayRef > picturesArray.length - 2) {
+        picturesArrayRef = 0
+    } else {
+        picturesArrayRef += 1
+    }
+    console.log('Index of pic array to be called: ', picturesArrayRef)
 }
 
 const createStopButton = () => {
     const stop = document.createElement('button')
     stop.setAttribute('id', 'stop')
     stop.innerHTML = 'Select a New Animal'
-    body.appendChild(stop)
+    main.appendChild(stop)
     addStopButtonListener()
     
 }
@@ -145,6 +151,7 @@ const unhideLandingPage = (event) => {
     landingPage.appendChild(form)
     */
     const stop = document.querySelector('#stop')
+    picturesArray = []
     //clear interval
     clearInterval(intervalId)
    //remove images

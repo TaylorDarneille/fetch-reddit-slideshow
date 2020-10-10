@@ -2,6 +2,10 @@ body {
     background-color: lightblue;
 }
 
+image {
+    margin: 0 auto;
+}
+
 #landingPage {
     display: flex;
     flex-direction: column;
