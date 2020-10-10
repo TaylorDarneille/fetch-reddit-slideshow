@@ -2,8 +2,14 @@ body {
     background-color: lightblue;
 }
 
-image {
+#img {
+    /*display: inline-block;*/
+    height: 400px;
     margin: 0 auto;
+    text-align: center;display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #landingPage {
@@ -13,8 +19,10 @@ image {
     align-items: center;
 }
 
+
+
 #stop {
     display: block;
     text-align: center;
-    margin: 0 auto;
+    margin: 10px auto;
 }

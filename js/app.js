@@ -114,6 +114,7 @@ const cycleImage = () => {
     let pic = document.createElement('img')
     grabPicturesArrayElement()
     pic.setAttribute('src', picturesArray[picturesArrayRef])
+    pic.setAttribute('id', 'img')
     main.appendChild(pic)
 }
 
