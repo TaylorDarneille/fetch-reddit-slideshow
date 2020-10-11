@@ -1,6 +1,7 @@
-
-const requestUrl = 'https://www.reddit.com/search.json?q=kittens+nsfw:no'
+// const requestUrl = 'https://www.reddit.com/search.json?q=kittens+nsfw:no'
+let requestUrl
 const slideshow = document.querySelector('#slideshow')
+const stopContainer = document.querySelector('#stop-container')
 let i = 0
 const imgArray = []
 let slides
@@ -27,8 +28,8 @@ fetch(requestUrl)
 const stopSlideShow = () => {
     clearTimeout(slides)
     description.innerText = 'New Search'
-    description.classList.remove('display-none')
-    form.classList.remove('display-none')
+    document.querySelector('#title-container').classList.remove('display-none')
+    document.querySelector('#form-container').classList.remove('display-none')
 }
 
 // set up the query images and put them in an array
@@ -37,7 +38,8 @@ const stopSlideShow = () => {
         for(let i = 0; i < dataChildren.length; i++) {
             // console.log(dataChildren[i])
             // so many broken images - this only gives me 3 though // but if I use innerHTML it does go through all
-            if(dataChildren[i].data.url.endsWith('.jpg') || dataChildren[i].data.url.endsWith('.png')) {
+            // imgur images weren't coming through, so now they're also blocked
+            if((dataChildren[i].data.url.endsWith('.jpg') || dataChildren[i].data.url.endsWith('.png')) && !dataChildren[i].data.url.startsWith('https://i.imgur.com')) {
                 // let img = document.createElement('img')
                 // img.setAttribute('id',`img${i}`)
                 // img.setAttribute('src',dataChildren[i].data.url)
@@ -69,7 +71,7 @@ const stopSlideShow = () => {
                     <img src='${imgArray[i]}'>
                 </div>`
                 i++
-                if (i>imgArray.length) {i=0}
+                if (i===imgArray.length) {i=0}
             // }
             slides = setTimeout(showSlides,2000)
         //    }, 2000)
@@ -77,14 +79,18 @@ const stopSlideShow = () => {
     }
 
 document.addEventListener('DOMContentLoaded',()=>{
-    form.addEventListener('submit',(event)=>{
-        event.preventDefault()
-        title.classList.add('display-none')
-        description.classList.add('display-none')
-        form.classList.add('display-none')
+    form.addEventListener('submit',e=>{
+        e.preventDefault()
+        let userInput = document.querySelector('#form').elements[0].value
+        // console.log(userInput)
+        // console.log(form.elements[0].value)
+        requestUrl = `https://www.reddit.com/search.json?q=${userInput}+nsfw:no`
+        document.querySelector('#title-container').classList.add('display-none')
+        document.querySelector('#form-container').classList.add('display-none')
+        if(stopContainer.firstChild) stopContainer.removeChild(stopContainer.firstChild)
         const stop = document.createElement('button')
         stop.innerText = 'stop slideshow'
-        document.querySelector('#stop-container').appendChild(stop)
+        stopContainer.appendChild(stop)
         // slideshow.appendChild(stop)
         // document.querySelector('#stop-container').innerHTML=`<button id="stop-button">stop slideshow</button>`
         // document.querySelector('#stop-button').addEventListener('mouseup',console.log('click!'))
