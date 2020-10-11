@@ -3,6 +3,7 @@ const requestUrl = 'https://www.reddit.com/search.json?q=kittens+nsfw:no'
 const slideshow = document.querySelector('#slideshow')
 let i = 0
 const imgArray = []
+let slides
 
 createSlideShow = () => {
 fetch(requestUrl)
@@ -15,15 +16,19 @@ fetch(requestUrl)
 //  console.log(dataChildren)
     getImages(dataChildren)
     showSlides()
-    // const stop = document.createElement('button')
-    // stop.innerText = 'stop slideshow'
-    // slideshow.appendChild(stop)
-    document.querySelector('#stop-container').innerHTML=`<button>stop slideshow</button>`
+
 })
 .catch((err) => {
     console.log('ERROR',err)
 })
 
+}
+
+const stopSlideShow = () => {
+    clearTimeout(slides)
+    description.innerText = 'New Search'
+    description.classList.remove('display-none')
+    form.classList.remove('display-none')
 }
 
 // set up the query images and put them in an array
@@ -66,7 +71,7 @@ fetch(requestUrl)
                 i++
                 if (i>imgArray.length) {i=0}
             // }
-            setTimeout(showSlides,2000)
+            slides = setTimeout(showSlides,2000)
         //    }, 2000)
         // }
     }
@@ -77,6 +82,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         title.classList.add('display-none')
         description.classList.add('display-none')
         form.classList.add('display-none')
+        const stop = document.createElement('button')
+        stop.innerText = 'stop slideshow'
+        document.querySelector('#stop-container').appendChild(stop)
+        // slideshow.appendChild(stop)
+        // document.querySelector('#stop-container').innerHTML=`<button id="stop-button">stop slideshow</button>`
+        // document.querySelector('#stop-button').addEventListener('mouseup',console.log('click!'))
+        stop.addEventListener('click',stopSlideShow)
         createSlideShow()
     })
 })
