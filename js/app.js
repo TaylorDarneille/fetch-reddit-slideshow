@@ -16,11 +16,12 @@ const getImgURL= (info)=> { //info represents the jsonData that gets passed in w
 
 //FUNCTION THAT CREATES AN IMG ELEMENT AND APPENDS IT, GETS CALLED BY SETINTERVAL
 const displayImg= ()=> {
-    while(imgBox.firstChild || putBtn.firstChild){ //removes previous image if there is one 
+    while(imgBox.firstChild || putBtn.firstChild){ //removes previous image and stop button if there is one 
         imgBox.removeChild(imgBox.firstChild);
         putBtn.removeChild(putBtn.firstChild);
     }
     let picture= document.createElement('img');
+    picture.classList.add('pic');
     picture.src=imgArr[counter]; //grabbing the img url from imgArr at different index depending on counter
     imgBox.append(picture);
     if(counter== imgArr.length-1){ //this will allow the photos to loop through if the user doesnt switch their search option
@@ -36,7 +37,7 @@ const displayImg= ()=> {
         clearInterval(switchPic); //will clear interval/stop img slideshow
         imgBox.removeChild(imgBox.firstChild); //gets rid of img
         showHideBox.style.display= ''; //displays the input option
-        putBtn.removeChild(putBtn.firstChild);
+        putBtn.removeChild(putBtn.firstChild); //gets rid of the stop button
     })
     
 }
@@ -69,6 +70,4 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 // To do: 
 // Display animation / slideshow of images (with DOM manipulation)
-//use setInterval and clearInterval
-// Show a button to stop / reset the animation
-// Repeat animation until use clicks "stop"
+
