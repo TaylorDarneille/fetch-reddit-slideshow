@@ -3,29 +3,54 @@ console.log('confusion');
 let requestURL= 'http://www.reddit.com/search.json?q=';
 let makeItAppropriate= '+nsfw:no';
 let imgArr=[];
+let counter= 0;
+let switchPic;
 
-const getImgURL= (data)=> {
-    data.data.children.filter(imgUrl=> {
-        imgArr.push(imgUrl.data.thumbnail);
+//FUNCTION THAT GETS THE IMG URL FROM JSON DATA OBJECT AND PUTS IT IN AN ARRAY
+const getImgURL= (info)=> { //info represents the jsonData that gets passed in when getImgURL() gets called in the second .then
+    info.data.children.forEach(child=> { //info.data.children is an array so we can call .forEach() on it. child represents each array element 
+        imgArr.push(child.data.thumbnail); //reach the imgURL by child.data.thumbnail and adding it to the imgArr
     })
     console.log('heres the imgArr',imgArr);
 }
 
-const fetchImg= (searchTerm)=> {
+//FUNCTION THAT CREATES AN IMG ELEMENT AND APPENDS IT, GETS CALLED BY SETINTERVAL
+const displayImg= ()=> {
+    while(imgBox.firstChild || putBtn.firstChild){ //removes previous image if there is one 
+        imgBox.removeChild(imgBox.firstChild);
+        putBtn.removeChild(putBtn.firstChild);
+    }
+    let picture= document.createElement('img');
+    picture.src=imgArr[counter]; //grabbing the img url from imgArr at different index depending on counter
+    imgBox.append(picture);
+    if(counter== imgArr.length-1){ //this will allow the photos to loop through if the user doesnt switch their search option
+        counter= 0; //reached the end of the array and need to start from the beginning of array
+    } else {
+        counter++; //if not at the end, increment the counter
+    }
+    let stopBtn= document.createElement('button'); //create stop button element 
+    stopBtn.innerText= 'STOP';
+    //event listener has annot function
+    putBtn.append(stopBtn); //add stopBtn element to its proper div
+    putBtn.addEventListener('click', ()=> {
+        clearInterval(switchPic); //will clear interval/stop img slideshow
+        imgBox.removeChild(imgBox.firstChild); //gets rid of img
+        showHideBox.style.display= ''; //displays the input option
+        putBtn.removeChild(putBtn.firstChild);
+    })
+    
+}
+
+//FUNCTION THAT WILL FETCH JSON DATA, IS CALLED WITH SUBMIT EVENT LISTENER
+const fetchImg= ()=> {
+    imgArr= []; //reset imgArr to be empty for every new search
     fetch(requestURL+ inputBox.value+ makeItAppropriate)
     .then((responseData)=> {
         return responseData.json(); //will returned the responseData in json format
     })
     .then((jsonData)=> { //can then do a then on the returned responseData in json format, pass in as parameter jsonData
-        // let imgArr[];
-        // jsonData.data.children.filter(childElm=> {
-        //     imgArr.push(childElm.data.thumbnail);
-        // })
-        console.log('heres the jsonData:', jsonData);
-        console.log('inputbox value', inputBox.value);
-        getImgURL(jsonData);
-        //console.log('follow the trail:', jsonData.data.children[0].data.thumbnail);
-        
+        getImgURL(jsonData); //call getImgURL passing in the jsonData so the function has access to it   
+        switchPic= setInterval(displayImg, 2000); //set a setInterval that calls the function in charge of creating img elements, setting them, and adding them
     })
     .catch((error)=> {
         console.log('Here is your error sir/maam:', error);
@@ -35,23 +60,15 @@ const fetchImg= (searchTerm)=> {
 document.addEventListener('DOMContentLoaded', ()=> {
     form.addEventListener('submit', (event)=> {
         event.preventDefault();
-        container.style.display= 'none'; //this line of code will make title/directions/input elements ~disappear 
-        console.log('submitted');
+        showHideBox.style.display= 'none'; //this line of code will make title/directions/input elements ~disappear 
         fetchImg(); //calling the function that contains our fetch request 
     })
 })
 
-//children is an array, may have to iterate through that to access several images for cats
-//maybe make that into its own function that can be called, definitely going to need to set variables for things 
+
 
 // To do: 
-//Create an array of image URLs (tip: use filter and map).
 // Display animation / slideshow of images (with DOM manipulation)
 //use setInterval and clearInterval
 // Show a button to stop / reset the animation
 // Repeat animation until use clicks "stop"
-
-// When the user clicks the "stop" button
-// Animation stops / images are removed
-// Form / title / description are shown again
-// User can enter a new search term
