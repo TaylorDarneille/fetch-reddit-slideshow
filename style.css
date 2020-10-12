@@ -1,0 +1,35 @@
+h1, h3, .bottom, .container, #form {
+    text-align: center;
+    color: #4a4a4a;
+}
+
+.photo {
+    height: 250px;
+    width: 250px;
+    margin: 0 auto;
+    border: 4px solid  #4a4a4a;
+    border-radius: 8px;
+}
+
+body, #form, #button {
+    font-family: 'Nunito', sans-serif;
+}
+
+#button, #input, .reset {
+    border: 2px solid  #4a4a4a;
+    border-radius: 8px;
+    color: #4a4a4a;
+}
+
+#button, .reset {
+    height: 2.5vw
+}
+
+#input {
+    height: 2vw;
+}
+
+body {
+    background-image: linear-gradient(white, ebfbff);
+    background-size: cover;
+}

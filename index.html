@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+  <title>Fetch Reddit Slideshow</title>
 </head>
 <body>
-  <h1>Hello Front-End</h1>
+  <h1 id='title'>Fetch Reddit Slideshow</h1>
+  <h3 id='directions'>Type in a Reddit search term to display popular images in a slideshow!</h3>
+  <form id='form'>
+    <input id='input' type="text" placeholder='type search key here'>
+    <input id='button' type="submit">
+  </form>
+  <br>
+  <div class='text'></div>
+  <div class="container"></div>
+  <div class='bottom'></div>
+  <div class='restart'></div>
+
+
+  <script src="app.js"></script>
 </body>
 </html>
