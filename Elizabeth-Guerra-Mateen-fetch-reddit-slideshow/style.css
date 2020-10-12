@@ -9,50 +9,106 @@
     display: none;
 }
 
+.border-blue {
+    border: 1px solid blue;
+}
+
 /* Style */
 
 body {
     background-image: url("./images/background-img.png");
-    /* <a href="http://www.freepik.com">Background image designed by Freepik</a> */
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .overlay {
     background-color:whitesmoke;
-    opacity: 45%;
+    opacity: 60%;
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
+    width: 70%;
     z-index: 1;
 }
 
-#title-container {
-    opacity: 100%;
+#title-container, main {
     z-index: 999;
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+#title-container {
+    margin: 10rem auto 0 auto;
+}
 
 #title {
     font-family: 'Squada One', cursive;
-    font-size: 3rem;
+    font-size: 4.2rem;
+    margin: 10rem auto 0.5rem auto;
 }
 
 #description {
     font-family: 'Exo 2', sans-serif;
     font-size: 1.2rem;
+    margin: 0 auto 0.5rem auto;
 }
 
-main {
-    opacity: 100%;
+#form-container,#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+input[type=text] {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.8rem;
+    width: 40%;
+    margin: -7rem auto 0.5rem auto;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+}
+
+input[type=submit] {
+    border: none;
+    border-radius: 0.3rem;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.8rem;
+    background-color: rgb(190,224,221);
+    /* background-color: rgb(96,170,187); */
+    color: black;
+
+}
+
+input[type=submit]:hover{
+    background-color: rgb(96,170,187);
+    color: white;
+    box-shadow: 1px 1.5px 1px 1px rgba(0,0,0,0.3);
+    cursor: pointer;
+
+}
+
+
+#credit {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.6rem;
     z-index: 999;
+    margin: 15rem auto 0 auto;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: black;
 }
 
 img {
