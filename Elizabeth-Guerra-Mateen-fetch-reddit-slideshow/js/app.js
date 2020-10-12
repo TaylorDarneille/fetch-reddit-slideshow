@@ -30,6 +30,8 @@ const stopSlideShow = () => {
     description.innerText = 'Something new?'
     imgArray = []
     i=0
+    if(slideshow.firstChild) slideshow.removeChild(slideshow.firstChild)
+    if(stopContainer.firstChild) stopContainer.removeChild(stopContainer.firstChild)
     document.querySelector('#title-container').classList.remove('display-none')
     document.querySelector('#form-container').classList.remove('display-none')
 }
@@ -89,7 +91,6 @@ document.addEventListener('DOMContentLoaded',()=>{
         requestUrl = `https://www.reddit.com/search.json?q=${userInput}+nsfw:no`
         document.querySelector('#title-container').classList.add('display-none')
         document.querySelector('#form-container').classList.add('display-none')
-        if(stopContainer.firstChild) stopContainer.removeChild(stopContainer.firstChild)
         const stop = document.createElement('button')
         stop.innerText = 'stop slideshow'
         stopContainer.appendChild(stop)
