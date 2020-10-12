@@ -1,7 +1,94 @@
+*,*::before,*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Dev Classes */
 .display-none {
     display: none;
+}
+
+/* Style */
+
+body {
+    background-image: url("./images/background-img.png");
+    /* <a href="http://www.freepik.com">Background image designed by Freepik</a> */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    background-color:whitesmoke;
+    opacity: 45%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+#title-container {
+    opacity: 100%;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    font-family: 'Squada One', cursive;
+    font-size: 3rem;
+}
+
+#description {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.2rem;
+}
+
+main {
+    opacity: 100%;
+    z-index: 999;
 }
 
 img {
     width: 50%;
 }
+
+/* Fade-in animation */
+
+  .fadeIn {
+    animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease 2s;
+    -moz-animation: fadeIn ease 2s;
+    -o-animation: fadeIn ease 2s;
+    -ms-animation: fadeIn ease 2s;
+    }
+    @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }

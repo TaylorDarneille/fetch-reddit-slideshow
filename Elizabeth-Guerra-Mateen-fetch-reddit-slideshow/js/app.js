@@ -3,7 +3,7 @@ let requestUrl
 const slideshow = document.querySelector('#slideshow')
 const stopContainer = document.querySelector('#stop-container')
 let i = 0
-const imgArray = []
+let imgArray = []
 let slides
 
 createSlideShow = () => {
@@ -28,6 +28,8 @@ fetch(requestUrl)
 const stopSlideShow = () => {
     clearTimeout(slides)
     description.innerText = 'New Search'
+    imgArray = []
+    i=0
     document.querySelector('#title-container').classList.remove('display-none')
     document.querySelector('#form-container').classList.remove('display-none')
 }
@@ -67,13 +69,13 @@ const stopSlideShow = () => {
 
             // while (i < imgArray.length) {
                 slideshow.innerHTML = 
-                `<div>
+                `<div class="fadeIn fadeOut">
                     <img src='${imgArray[i]}'>
                 </div>`
                 i++
                 if (i===imgArray.length) {i=0}
             // }
-            slides = setTimeout(showSlides,2000)
+            slides = setTimeout(showSlides,4000)
         //    }, 2000)
         // }
     }
