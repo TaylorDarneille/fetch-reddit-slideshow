@@ -2,7 +2,7 @@ const requestURL = "http://www.reddit.com/search.json?q=nsfw:no+"
 const container = document.querySelector(".container")
 const slideShowContainer = document.querySelector(".slideshow")
 let index =0;
-
+const slide = document.querySelector("#slide")
 
 
 
@@ -44,10 +44,11 @@ const moveSlides =(thumbNailsArray) =>{
 }
 
 const getPhoto = (child)=>{
-    let pic = document.createElement("img")
-        pic.setAttribute("src", child)
-        slideShowContainer.appendChild(pic)
-        console.log("this is" +pic)
+    // let pic = document.createElement("img")
+        // pic.setAttribute("src", child)
+        // slideShowContainer.appendChild(pic)
+        slide.setAttribute("src", child)
+        // console.log("this is" +pic)
 }
 
 //clear the container when input is given
