@@ -1,7 +1,7 @@
 const requestURL = "http://www.reddit.com/search.json?q=nsfw:no+"
 const container = document.querySelector(".container")
 const slideShowContainer = document.querySelector(".slideshow")
-
+let index =0;
 
 
 
@@ -22,11 +22,10 @@ const fetchPicture =()=> {
     })
     .then((jsonData)=>{
         const children =jsonData.data.children
-        const thumbNails = children.map(child => child.data.thumbnail).filter(thumbnail => thumbnail.includes("http"))
-        console.log(thumbNails)
-        // thumbNails.setInterval()
+        const thumbNailArray = children.map(child => child.data.thumbnail).filter(thumbnail => thumbnail.includes("http"))
+        window.setInterval(moveSlides, 2000, thumbNailArray)
         console.log(jsonData)
-        children.forEach(getPhoto)
+        // children.forEach(getPhoto)
         console.log(jsonData)
     })
     .catch((err)=>{
@@ -35,12 +34,18 @@ const fetchPicture =()=> {
 }
 })
 
-// const buttonClick = () =>{
-    //picture slideshow starts
-// }
+const moveSlides =(thumbNailsArray) =>{
+    getPhoto(thumbNailsArray[index])
+    if (index< thumbNailsArray.length-1){
+        index++
+    } else {
+        index =0;
+    }
+}
+
 const getPhoto = (child)=>{
     let pic = document.createElement("img")
-        pic.setAttribute("src", child.data.thumbnail)
+        pic.setAttribute("src", child)
         slideShowContainer.appendChild(pic)
         console.log("this is" +pic)
 }
