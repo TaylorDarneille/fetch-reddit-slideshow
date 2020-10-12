@@ -27,7 +27,7 @@ fetch(requestUrl)
 
 const stopSlideShow = () => {
     clearTimeout(slides)
-    description.innerText = 'New Search'
+    description.innerText = 'Something new?'
     imgArray = []
     i=0
     document.querySelector('#title-container').classList.remove('display-none')

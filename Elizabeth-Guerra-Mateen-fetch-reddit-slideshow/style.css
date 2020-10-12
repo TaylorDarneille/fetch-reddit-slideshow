@@ -6,7 +6,7 @@
 
 /* Dev Classes */
 .display-none {
-    display: none;
+    display: none !important;
 }
 
 .border-blue {
@@ -18,7 +18,8 @@
 body {
     background-image: url("./images/background-img.png");
     width: 100vw;
-    height: 100vh;
+    height: 300vh;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -29,13 +30,14 @@ body {
     background-color:whitesmoke;
     opacity: 60%;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    /* top: 0;
+    bottom: 0; */
+    height: 300vh;
     width: 70%;
     z-index: 1;
 }
 
-#title-container, main {
+#container, #title-container, main {
     z-index: 999;
     width: 70%;
     display: flex;
@@ -72,12 +74,13 @@ input[type=text] {
     border-radius: 0.3rem;
     padding: 0.8rem;
     width: 40%;
-    margin: -7rem auto 0.5rem auto;
+    margin: 0.5rem auto;
     font-family: 'Exo 2', sans-serif;
     font-size: 1rem;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
 }
 
-input[type=submit] {
+input[type=submit], button {
     border: none;
     border-radius: 0.3rem;
     font-family: 'Exo 2', sans-serif;
@@ -90,7 +93,7 @@ input[type=submit] {
 
 }
 
-input[type=submit]:hover{
+input[type=submit]:hover, button:hover{
     background-color: rgb(96,170,187);
     color: white;
     box-shadow: 1px 1.5px 1px 1px rgba(0,0,0,0.3);
@@ -111,8 +114,14 @@ a:link, a:visited {
     color: black;
 }
 
+#slideshow {
+    width: 100%;
+    z-index: 999;
+}
+
 img {
-    width: 50%;
+    width: 100%;
+    margin: 2rem auto;
 }
 
 /* Fade-in animation */
