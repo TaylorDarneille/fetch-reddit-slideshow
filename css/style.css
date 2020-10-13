@@ -73,12 +73,3 @@ button:hover, input:hover {
     70% {opacity: 1;}
     100% {opacity: .0;}
 }
-
-/* .fadeBox {
-    animation: bringIn 5s;
-}
-
-@keyframes bringIn {
-    0% {opacity: .0;}
-    100% {opacity: 1;}
-}  */
