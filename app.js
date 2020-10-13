@@ -1,3 +1,9 @@
+const container = document.querySelector('.container')
+const directions = document.getElementById('directions')
+let counter = 0
+let isRunning = true
+let interval
+
 const requestUrl = 'https://www.reddit.com/search.json?q='
 
 const fetchResult = (searchTerm) => {
@@ -20,34 +26,47 @@ const fetchResult = (searchTerm) => {
                 thumbNails.splice(i, 1)
             }
         }
-        //console.log(thumbNails)
+        console.log(thumbNails)
         //imageDisplay(thumbNails)
-        //slideshow function
-        const imageDisplay = (thumbNails) => {
-        //make start of container empty
-            container.innerHTML = ""
-            thumbNails.forEach((image, index) => {
-                let pic = document.createElement('img')
-                //set pic attribute to pull in thumbnail
-                pic.setAttribute('src', image)
-                container.appendChild(pic)
-            })
-            let current = 0
-            let next = 1
-            interval = setInterval(() => {
-                current = next
-                next = (next + 1)
-            }, 1000)
+        //create images to display
+        const imageDisplay = (arr) => {
+            let newImage = arr
+            let pic = document.createElement('img')
+            //set pic attribute to pull in thumbnail
+            pic.setAttribute('src', newImage)
+            container.appendChild(pic)
         }
-        imageDisplay()
+        const clearPrevPhoto = () => {
+            while (container.firstChild) {
+                container.removeChild(container.firstChild)
+            }
+        }
+        const startSlideshow = () => {
+            input.disabled = true
+            if (isRunning) {
+                directions.innerText = ''
+                counter++
+                if (counter >= thumbNails.length) {
+                    counter = 0
+                }
+                clearPrevPhoto()
+                imageDisplay(thumbNails[counter])
+                }
+            }
+            //function for reset/stop button
+        document.getElementById('reset').addEventListener('click', ()=>{
+            input.disabled = false
+            clearInterval(interval)
+            clearPrevPhoto()
+            input.value = ''
+            directions.innerText = "Enter search query below!"
+        })
+        interval = setInterval(startSlideshow, 4000)
     })
     .catch((error) => {
             console.log('there is an error:', error)
     })   
 }
-const container = document.querySelector('.container')
-let interval
-
 
 // const addImage = (image) => {
 //     let pic = document.createElement('img')
@@ -64,9 +83,4 @@ document.addEventListener('DOMContentLoaded', ()=> {
         console.log('user input is:', input.value)
         fetchResult(input.value)
     })
-})
-
-//function for reset/stop
-document.getElementById('reset').addEventListener('click', ()=>{
-    clearInterval(interval)
 })
