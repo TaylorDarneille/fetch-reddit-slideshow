@@ -3,17 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>pusheen!</title>
+  <title>click for pics!</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Pusheen!</h1>
-  <h3>Click on the search button to admire the multitudes of pusheen on the hellscape that is reddit.</h3>
-  <p></p>
-  <form id="form">
-    <input id="input" type="text">
-    <input type="button" value="Search!">
-  </form>
+  <div id="query-container">
+    <h1>Fetch Pics!</h1>
+    <h3>Enter a search term below and click "fetch." We'll fetch your pic right away!</h3>
+    <form id="form">
+      <div>
+        <label for="input">Get that pic:</label>
+        <input id="input" type="text" placeholder="Search">
+      </div>
+      <button type="submit">Fetch</button>
+    </form>
+  </div>
+  <div id="slideshow">
+    <div id="results"></div>
+    <div>
+      <button type="submit" id="stop">Stop</button>
+    </div>
+  </div>  
   <script src="js/app.js"></script>
 </body>
 </html>
