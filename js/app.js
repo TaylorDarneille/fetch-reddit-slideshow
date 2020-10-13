@@ -35,6 +35,8 @@ const fetchPics = (input) => {
         })
         console.log(picsResults);
         currentImg = picsResults;
+        startSlide();
+
     })
     .catch((error)=>{
         console.log("error!!!:", error);        
@@ -42,7 +44,8 @@ const fetchPics = (input) => {
 }
 
 // rendering the pics 
-const showpic = () => {
+const showPic = () => {
+    let results = document.getElementById("results");
     results.innerHTML = "";
     let img = document.createElement("img");
     img.setAttribute("src", currentImg[picIndex].url);
@@ -50,7 +53,7 @@ const showpic = () => {
 }
 
 // interval - timer to change pic
-const changepic = () => {
+const changePic = () => {
     picIndex += 1
     if (picIndex >= currentImg.length) {
         picIndex = 0;
@@ -68,8 +71,6 @@ const startSlide = () => {
     showPic();
     timer = setInterval(changePic, delayTimer)
 }
-
-
 
 // stop slideshow
 
