@@ -1,3 +1,7 @@
+body {
+    height: 100vh;
+}
+
 body, form {
     display: flex;
     flex-direction: column;
@@ -8,4 +12,14 @@ body, form {
 
 input {
     margin: 10px;
+}
+
+.displayed-image {
+    height: 150px;
+    width: 150px;
+}
+
+#stopBtn {
+    display: none;
+    margin-top: 15px;
 }
