@@ -1,20 +1,50 @@
 const requestURL = "http://www.reddit.com/search.json?q=nsfw:no+"
 const container = document.querySelector(".container")
 const slideShowContainer = document.querySelector(".slideshow")
-let index =0;
+const refreshButton = document.querySelector(".refresh")
+container.style.display = "block"
+slideShowContainer.style.display = "none"
 const slide = document.querySelector("#slide")
+let index =0;
+let mySlides;
+
+
 
 
 
 document.addEventListener("DOMContentLoaded", ()=>{
+    startSlides()
+})
+
+const startSlides = ()=>{
+    clickGo()
+    clickRestart()
+    
+}
+const clickGo =()=>{
     form.addEventListener("submit", (event)=>{
         event.preventDefault()
-        container.style.display = "none"
+        //clear the container when input is given
+        container.style.display = "none";
+        slideShowContainer.style.display= "block"
         console.log("user input is:", input.value)
         fetchPicture()
     })
+}
 
-
+const clickRestart =()=>{
+    refreshButton.addEventListener("click", (event)=>{
+        event.preventDefault()
+        input.value = ""
+        //clear the container when input is given
+        window.clearInterval(mySlides)
+        getPhoto(undefined)
+        container.style.display = "block";
+        slideShowContainer.style.display= "none"
+        index=0;
+        console.log("this is supposed to refresh")
+    })
+}
 const fetchPicture =()=> {
     fetch(requestURL+input.value)
     .then((responseData)=>{
@@ -22,8 +52,8 @@ const fetchPicture =()=> {
     })
     .then((jsonData)=>{
         const children =jsonData.data.children
-        const thumbNailArray = children.map(child => child.data.thumbnail).filter(thumbnail => thumbnail.includes("http"))
-        window.setInterval(moveSlides, 2000, thumbNailArray)
+        const thumbNailArray = children.map(child => child.data.thumbnail).filter(thumbnail => thumbnail.includes("https"))
+        mySlides = window.setInterval(moveSlides, 2000, thumbNailArray)
         console.log(jsonData)
         // children.forEach(getPhoto)
         console.log(jsonData)
@@ -32,8 +62,8 @@ const fetchPicture =()=> {
         console.log("error:", err)
     })
 }
-})
 
+//make slideshow that goes through all pics
 const moveSlides =(thumbNailsArray) =>{
     getPhoto(thumbNailsArray[index])
     if (index< thumbNailsArray.length-1){
@@ -43,14 +73,12 @@ const moveSlides =(thumbNailsArray) =>{
     }
 }
 
+//
 const getPhoto = (child)=>{
-    // let pic = document.createElement("img")
-        // pic.setAttribute("src", child)
-        // slideShowContainer.appendChild(pic)
         slide.setAttribute("src", child)
-        // console.log("this is" +pic)
 }
 
-//clear the container when input is given
-//make slideshow that goes through all pics
+
+
+
 //make stop button with event listener that brings back to search bar
