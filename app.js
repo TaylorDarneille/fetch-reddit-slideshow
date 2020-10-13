@@ -36,7 +36,8 @@ const fetchImages = () => {
                 if(container.firstChild){
                     container.removeChild(container.firstChild)
                 }
-                allPics[i].classList.remove('hidden');
+                allPics[i].classList.toggle('visible');
+                allPics[i].style.borderRadius = '7px';
                 console.log(allPics[i])
                 i++
             }, 2000)
@@ -51,6 +52,8 @@ const fetchImages = () => {
             while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
+            document.querySelector('.search-title').classList.remove('hidden')
+            document.querySelector('h1').classList.remove('hidden')
         }
         stopBtn.addEventListener('click', reset)
     })    
@@ -75,6 +78,8 @@ document.addEventListener("DOMContentLoaded",() => {
         event.preventDefault()
         fetchImages()
         form.classList.add('hidden')
+        document.querySelector('.search-title').classList.add('hidden')
+        document.querySelector('h1').classList.add('hidden')
         stopBtn.setAttribute('class','')
     })
 })

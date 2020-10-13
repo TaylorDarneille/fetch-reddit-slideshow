@@ -1,4 +1,4 @@
-<!-- # Reddit photo slideshow
+# Reddit photo slideshow
 
 We are going to use what we've learned so far to create a basic slideshow using images taken from reddit via AJAX.
 
@@ -20,7 +20,7 @@ Reddit sometimes contains some offensive images be careful with your search term
 * Some sort of title
 * A short description telling the user what to do
 * A blank text field
-* A Button ("start" or "go" or "search") -->
+* A Button ("start" or "go" or "search")
 
 #### When the user enters a search term and presses enter
 
