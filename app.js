@@ -22,18 +22,24 @@ const fetchResult = (searchTerm) => {
     .then((jsonData) => {
        //add loading message
         directions.innerText='loading...'
-        //isolate the children array so we can run the forEach function through it
+        //isolate the children array so we can run the map function through it
         let children = jsonData.data.children
        //gives a new array of thumbnails
        const thumbNails = children.map((child)=>{
-           return child.data.thumbnail
-       })
-       for (let i = 0; i<thumbNails.length; i++) {
-           if (!thumbNails[i].includes('jpg')) {
-               thumbNails.splice(i, 1)
-           }
-       }
-       console.log(thumbNails)
+        return child.data.url
+        })
+     
+        //function to filter out items that have url images
+        const filterPics = (str) => {
+            if(str.includes('.jpg')){
+                return true
+            } else {
+                return false
+            }
+        }
+        //creates a new array with items that have url images
+        let actualImages = thumbNails.filter(filterPics)
+
    
         const addImage = (arr) => {
             let newImage = arr
@@ -70,11 +76,11 @@ const fetchResult = (searchTerm) => {
             if (isRunning) {
                 directions.innerText=''
                 ++counter
-                if (counter >= thumbNails.length) {
+                if (counter >= actualImages.length) {
                     counter = 0
                 }
                 clearPhoto()
-                addImage(thumbNails[counter])
+                addImage(actualImages[counter])
             }
         }
 
