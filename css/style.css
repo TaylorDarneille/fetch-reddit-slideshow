@@ -1,3 +1,11 @@
+body{
+    margin: 0 auto;
+    background-image: url("https://image.freepik.com/free-photo/italian-foods-concept-menu-design-pasta-with-ingredients-white-background_35641-165.jpg");
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
 .container {
     width: 500px;
     margin: 0 auto;

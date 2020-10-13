@@ -1,4 +1,4 @@
-const requestURL = "http://www.reddit.com/search.json?q=nsfw:no+"
+const requestURL = "http://www.reddit.com/search.json?q=+nsfw:no+"
 const container = document.querySelector(".container")
 const slideShowContainer = document.querySelector(".slideshow")
 const refreshButton = document.querySelector(".refresh")
@@ -73,7 +73,7 @@ const moveSlides =(thumbNailsArray) =>{
     }
 }
 
-//
+//makes the child link into the src for each image in the slides
 const getPhoto = (child)=>{
         slide.setAttribute("src", child)
 }
