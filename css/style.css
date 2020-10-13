@@ -43,15 +43,10 @@ h1{
 img {
     height: 100%;
     opacity: 1;
-    /* transition: opacity 3s; */
     transition-timing-function: ease-in;
 
 }
 
-/* img:first-child {
-    opacity: 0.1;
-    transition: opacity 1s;
-} */
 
 button, input {
     font-family: 'Amatic SC', cursive;
@@ -67,3 +62,23 @@ button:hover, input:hover {
     background: white;
     border: 3px solid black;
 }
+
+.pic {
+    animation: fade 3s;
+}
+
+@keyframes fade {
+    0% {opacity: .0;}
+    30% {opacity: 1;}
+    70% {opacity: 1;}
+    100% {opacity: .0;}
+}
+
+/* .fadeBox {
+    animation: bringIn 5s;
+}
+
+@keyframes bringIn {
+    0% {opacity: .0;}
+    100% {opacity: 1;}
+}  */
