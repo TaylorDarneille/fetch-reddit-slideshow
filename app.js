@@ -15,19 +15,13 @@ const fetchImages = () => {
     .then((jsonData)=>{
         //get the array of children so you can loop through it using map function
         let children = jsonData.data.children
-        // console.log("jsonData:", children)
         //map will give a new array of pics
         const thumbPics = children.map((child)=>{
-           return child.data.thumbnail
+           return child.data.url
         })
-        for (let i = 0; i<thumbPics.length; i++) {
-            if (!thumbPics[i].includes('jpg')) {
-                thumbPics.splice(i, 1)
-            }
-        }
+        let JPGs = thumbPics.filter(filterPics)
         //create an image tag for each search result
-        console.log(thumbPics)
-        thumbPics.forEach(createImg)
+        JPGs.forEach(createImg)
         //begin the slideshow once all image tags are created
         const slideshow = () => { 
             let allPics = document.querySelectorAll('img')
@@ -35,6 +29,9 @@ const fetchImages = () => {
             interval = setInterval(() => {
                 if(container.firstChild){
                     container.removeChild(container.firstChild)
+                }
+                if(i === allPics.length){
+                    i = 0
                 }
                 allPics[i].classList.toggle('visible');
                 allPics[i].style.borderRadius = '7px';
@@ -44,6 +41,7 @@ const fetchImages = () => {
         }
         slideshow()
         const reset = () => {
+            location.reload();
             clearInterval(interval)
             console.log('STOP BUTTON WAS CLICKED')
             stopBtn.setAttribute('class','hidden')
@@ -68,8 +66,16 @@ const createImg = (imageURL)=>{
     pic.setAttribute("src", imageURL)
     container.appendChild(pic)
     pic.classList.add('hidden')
-    pic.style.width = '250px'
-    pic.style.height = '250px'
+    pic.style.width = '450px'
+    pic.style.height = '450px'
+}
+
+const filterPics = (str) => {
+    if(str.includes('.jpg')){
+        return true
+    } else {
+        return false
+    }
 }
 
 document.addEventListener("DOMContentLoaded",() => {
@@ -79,7 +85,9 @@ document.addEventListener("DOMContentLoaded",() => {
         fetchImages()
         form.classList.add('hidden')
         document.querySelector('.search-title').classList.add('hidden')
+        document.querySelector('.search-title').style.height = '0px';
         document.querySelector('h1').classList.add('hidden')
+        document.querySelector('h1').style.height = '0px';
         stopBtn.setAttribute('class','')
     })
 })
