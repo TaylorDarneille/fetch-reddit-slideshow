@@ -8,6 +8,10 @@
     background-color: #F7CAC9;
 }
 
+body{
+    position: relative;
+}
+
 h1{
     margin-top: 40px;
 }
@@ -23,7 +27,7 @@ p{
 }
 
 #container {
-    padding-top: 64px;
+    padding-top: 24px;
     width: 400px;
     height: 200px;
 }
@@ -43,7 +47,7 @@ input[type="text"] {
     background-color: transparent;
     transition: transform 250ms ease-in-out;
     font-size: 14px;
-    line-height: 18px;  
+    line-height: 18px;
     color: #575756;
     background-color: transparent;
     background-repeat: no-repeat;
@@ -62,7 +66,7 @@ button[id="stop-button"]{
     padding: 12px 24px;
     background-color: transparent;
     font-size: 14px;
-    line-height: 18px;  
+    line-height: 18px;
     color: #575756;
     background-color: transparent;
     background-repeat: no-repeat;
@@ -70,13 +74,19 @@ button[id="stop-button"]{
     background-position: 95% center;
     border-radius: 50px;
     border: 1px solid #575756;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button[id="stop-button"]:hover{
     color: white;
     background: #575756;
     cursor: pointer;
-}    
+}
 
 
 button[type="submit"] {
@@ -95,7 +105,7 @@ button[type="submit"] {
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
-        
+
 #input:hover, #input:focus {
     padding: 12px 0;
     outline: 0;
@@ -107,4 +117,4 @@ button[type="submit"] {
 
 .hidden{
     display: none;
-} */
+}
