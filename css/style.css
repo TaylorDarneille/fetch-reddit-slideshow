@@ -1,5 +1,6 @@
 body {
     height: 100vh;
+    background-color: floralwhite;
 }
 
 body, form {
@@ -7,11 +8,23 @@ body, form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
-input {
+form, input {
     margin: 10px;
+}
+
+#input {
+    background-color: floralwhite;
+    text-align: center;
+    font-family: 'Lobster Two', Helvetica, sans-serif;
+    font-size: 55px;
+    font-style: italic;
+    width: 50%;
+    border: none;
+    border-bottom: 2px dashed black;
 }
 
 .displayed-image {
@@ -19,7 +32,24 @@ input {
     width: 150px;
 }
 
+#submit {
+    font-size: 15px;
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    border: 5px solid gainsboro;
+    background-color: black;
+    color: white;
+}
+
 #stopBtn {
     display: none;
     margin-top: 15px;
+    font-size: 25px;
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    border: 5px solid lightgray;
+    background-color: red;
+    color: white;
 }
