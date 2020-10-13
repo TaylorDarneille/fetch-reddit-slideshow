@@ -27,14 +27,18 @@ button {
     font-size: 15px;
     margin: 15px;
     padding: 10px;
+    background-color: rgb(216, 215, 171);
+    border-radius: 10px;
+    border-color: rgba(255, 255, 255, 0);
 }
 
-button:hover {
-    background-color: rgb(160, 89, 101);
-}
-
-button:active {
-    background-color: rgb(90, 26, 36);
+#input {
+    background-color: rgba(255, 255, 255, 0.747);
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    border-radius: 10px;
+    width: 300px;
+    height: 20px;
+    border-color: rgba(87, 70, 40, 0.308);
 }
 
 #slideshow-container {
