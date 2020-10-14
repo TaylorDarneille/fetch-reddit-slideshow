@@ -1,0 +1,21 @@
+body{
+    background: rgb(189,198,201);
+    background: radial-gradient(circle, rgba(189,198,201,1) 24%, rgba(5,18,36,0.6385356104651163) 67%, rgba(137,143,152,1) 76%, rgba(206,208,212,1) 90%, rgba(255,255,255,0.7257449127906976) 100%);
+
+    background-position: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+h1{
+    margin-top: 250px;
+    font-family: monospace;
+    font-size: 50px;
+}
+#description{
+    font-size: 30px;
+}
+
